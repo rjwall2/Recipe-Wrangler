@@ -1,11 +1,25 @@
-# My Personal Project
+# Recipe Wrangler
 
-## A subtitle
+### A recipe manager for people who cook with dietary limitations
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+This application allows for the input of recipes into a personal 
+database, which can then be filtered in various ways.
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+Possible filters include:
+
+- The inclusion or exclusion of ingredients (e.g, has eggs, does not have peanuts)
+
+- By diet (e.g., vegetarian, vegan, ketogenic)
+
+- By time (e.g, 10 minutes, 90+ minutes)
+
+
+I was interested in building this application due to my personal 
+experience with allergenic, and voluntary limitations on my 
+diet. I am allergic to peanuts, and am pseudo vegetarian. While I 
+can cook for myself, sometimes it is hard for others to know 
+what they can cook for me. With this application one would be 
+able to sort their recipes by specific ingredients or diets
+from a personal database of recipes.
+
+
