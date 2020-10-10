@@ -23,3 +23,21 @@ able to sort their recipes by specific ingredients or diets
 from a personal database of recipes.
 
 
+### User Stories
+
+- As a user, I want to be able to add recipes to my personal
+collection
+
+- As a user, I want to be able to filter the recipes in my
+personal collection by inclusion and/or exclusion of ingredients
+
+- As a user I want to be able to filter the recipes in my
+personal collection by diet
+
+- As a user I want to be able to filter the recipes by time
+
+- As a user, I want to be able to view details of a selected
+recipe
+
+
+
