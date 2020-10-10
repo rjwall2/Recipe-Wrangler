@@ -7,7 +7,7 @@ database, which can then be filtered in various ways.
 
 Possible filters include:
 
-- The inclusion or exclusion of ingredients (e.g, has eggs, does not have peanuts)
+- The exclusion of ingredients (e.g,does not have peanuts)
 
 - By diet (e.g., vegetarian, vegan, ketogenic)
 
@@ -19,7 +19,8 @@ experience with allergenic, and voluntary limitations on my
 diet. I am allergic to peanuts, and am pseudo vegetarian. While I 
 can cook for myself, sometimes it is hard for others to know 
 what they can cook for me. With this application one would be 
-able to sort their recipes by specific ingredients or diets
+able to sort their recipes by exclusion of ingredients (for
+people with allergies) or by diet,
 from a personal database of recipes.
 
 
@@ -29,7 +30,7 @@ from a personal database of recipes.
 collection
 
 - As a user, I want to be able to filter the recipes in my
-personal collection by inclusion and/or exclusion of ingredients
+personal collection by exclusion of ingredients
 
 - As a user I want to be able to filter the recipes in my
 personal collection by diet
