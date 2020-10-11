@@ -6,13 +6,13 @@ import java.util.List;
 
 //represents the list of ingredients used in a recipe
 public class Ingredients {
-    private static List<String> VEGETARIAN = new ArrayList<>(Arrays.asList("Beef", "Chicken", "Pork",
+    private static final List<String> VEGETARIAN = new ArrayList<>(Arrays.asList("Beef", "Chicken", "Pork",
             "Fish", "Lamb", "Turkey", "Goat", "Crab", "Lobster", "Shrimp"));
 
-    private static List<String> VEGAN_COMPONENTS = new ArrayList<>(Arrays.asList("Cheese", "Milk",
+    private static final List<String> VEGAN_COMPONENTS = new ArrayList<>(Arrays.asList("Cheese", "Milk",
             "Yogurt", "Egg", "Honey", "Butter", "Cream", "Gelatin"));
 
-    private static List<String> KETO = new ArrayList<>(Arrays.asList("Bread", "Potato", "Banana", "Corn",
+    private static final List<String> KETO = new ArrayList<>(Arrays.asList("Bread", "Potato", "Banana", "Corn",
             "Rice", "Honey", "Sugar", "Fruit Juice", "Pasta", "Cereal"));
 
     private List<String> ingredientList;

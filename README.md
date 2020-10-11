@@ -11,7 +11,7 @@ Possible filters include:
 
 - By diet (e.g., vegetarian, vegan, ketogenic)
 
-- By time (e.g, 10 minutes, 90+ minutes)
+- By time (e.g, under 20 minutes)
 
 
 I was interested in building this application due to my personal 
