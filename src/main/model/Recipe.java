@@ -35,8 +35,8 @@ public class Recipe {
     }
 
     //EFFECTS: returns the List<String> of ingredients within in a recipe
-    public List<String> getRecipeIngredients() {
-        return ingredientsNeeded.getIngredients();
+    public Ingredients getRecipeIngredients() {
+        return ingredientsNeeded;
     }
 
     public String getRecipeInstructions() {

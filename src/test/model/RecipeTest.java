@@ -26,16 +26,18 @@ public class RecipeTest {
 
     @Test
     public void getRecipeIngredientsTest() {
-        List<String> recipeIngredientList = testRecipe.getRecipeIngredients();
+        Ingredients recipeIngredientList = testRecipe.getRecipeIngredients();
 
-        assertEquals(4, recipeIngredientList.size());
+        List<String> recipeIngredientAsAList = recipeIngredientList.getIngredients();
 
-        assertTrue(recipeIngredientList.contains("Onion"));
-        assertTrue(recipeIngredientList.contains("Pasta"));
-        assertTrue(recipeIngredientList.contains("Turkey"));
-        assertTrue(recipeIngredientList.contains("Tomato"));
+        assertEquals(4, recipeIngredientAsAList.size());
 
-        assertFalse(recipeIngredientList.contains("Bread"));
+        assertTrue(recipeIngredientAsAList.contains("Onion"));
+        assertTrue(recipeIngredientAsAList.contains("Pasta"));
+        assertTrue(recipeIngredientAsAList.contains("Turkey"));
+        assertTrue(recipeIngredientAsAList.contains("Tomato"));
+
+        assertFalse(recipeIngredientAsAList.contains("Bread"));
     }
 
 }
