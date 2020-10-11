@@ -13,8 +13,7 @@ public class Recipe {
     private String instructions;
 
     //REQUIRES: first letter of each string in ing must be capitalized,singular,
-    //          and must be a food. ing must consist of at least one string (one ingredient).
-    //          No parameters may be left empty.
+    //          and must be a food. No parameters may be left empty.
     //EFFECTS: new recipe is made where recipe name is set to namee, recipe time is set to
     //         timee, recipe instructions are set to instruct,
     //         and ing (arbitrary number of strings) is set as the ingredient list

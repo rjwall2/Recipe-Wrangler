@@ -37,8 +37,6 @@ personal collection by diet
 
 - As a user I want to be able to filter the recipes by time
 
-- As a user, I want to be able to view details of a selected
-recipe
 
 
 
