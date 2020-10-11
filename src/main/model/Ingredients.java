@@ -17,8 +17,10 @@ public class Ingredients {
 
     private List<String> ingredientList;
 
-    //REQUIRES: first letter of each ingredient must be capitalized,singular, and must be a food
+    //REQUIRES: first letter of each ingredient must be capitalized,singular,
+    //          and must be a food. arg must consist of at least one string.
     //EFFECTS: creates a list of ingredients, consisting of arg (the arbitrary number of strings passed)
+
     public Ingredients(String... arg) {
         ingredientList = new ArrayList<>();
         ingredientList.addAll(Arrays.asList(arg));
@@ -27,6 +29,7 @@ public class Ingredients {
     //REQUIRES: ing must be a food,singular, with the first letter capitalized
     //EFFECTS: returns true if the ingredient ing is contained in a list of ingredients,
     //         and returns false if it is not
+
     public Boolean containsIngredient(String ing) {
         for (String s : ingredientList) {
             if (s.equals(ing)) {
@@ -40,6 +43,7 @@ public class Ingredients {
     //EFFECTS: takes an arbitrary amount of foods and returns true if any one of them is
     //         contained in the list of ingredients, and false if the list of ingredients contains
     //         none of them.
+
     public Boolean containsMoreIngredients(String... arg) {
         List<String> pickyList = new ArrayList<>(Arrays.asList(arg));
         for (String s : pickyList) {
@@ -52,6 +56,7 @@ public class Ingredients {
 
 
     //EFFECTS: returns true if list of ingredients is vegetarian, and false if it is not
+
     public Boolean vegetarian() {
         for (String s : ingredientList) {
             if (VEGETARIAN.contains(s)) {
@@ -62,6 +67,7 @@ public class Ingredients {
     }
 
     //EFFECTS: returns true if list of ingredients is vegan, and false if it is not
+
     public Boolean vegan() {
         List<String> vegan = new ArrayList<>(VEGETARIAN);
         vegan.addAll(VEGAN_COMPONENTS);
@@ -74,6 +80,7 @@ public class Ingredients {
     }
 
     //EFFECTS: returns true if list of ingredients is ketogenic, and false if it is not
+
     public Boolean keto() {
         for (String s : ingredientList) {
             if (KETO.contains(s)) {

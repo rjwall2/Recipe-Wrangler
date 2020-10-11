@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class IngredientsTest {
 
-    private Ingredients ingredientTest;
 
     @Test
     void ingredientsConstructorTest() {
