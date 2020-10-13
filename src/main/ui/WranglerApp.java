@@ -1,7 +1,6 @@
 package ui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,31 +17,27 @@ public class WranglerApp {
     private void runWrangler() {
 
         Scanner input = new Scanner(System.in);
+        Boolean keepGoing = true;
 
         System.out.println("Hi, welcome to RecipeWrangler, let's add a recipe to your "
                 + "personal" + "database!");
 
         addRecipeToPersonalCollection();
 
-        System.out.println("Do you want to: add another recipe(type 'add'),filter by time (type 'time'),"
-                + "filter by diet(type'vegt','vega',or'keto'), filter by ingredients(type 'ingredients')");
+        while (keepGoing) {
 
-        String action = input.next();
+            System.out.println("Do you want to: add another recipe(type 'add'),filter by time (type 'time'),"
+                    + "filter by diet(type'vegt','vega',or'keto'), filter by ingredients(type 'ingredients'),"
+                    + "end session (type 'end')");
 
-        if (action.equals("add")) {
-            addRecipeToPersonalCollection();
+            String action = input.next();
+
+            if (action.equals("end")) {
+                keepGoing = false;
+                System.out.println("Thanks for using RecipeWrangler!");
+            }
+            runOptions(action);
         }
-        if(action.equals("time")){
-            System.out.println("What's the longest you want to cook for?");
-            Integer freeTime = input.nextInt();
-            personalCollection.filterRecipesByTime(freeTime);
-        }
-        if(action.equals("ingredients")) {
-
-        }
-        }
-
-
     }
 
     private void addRecipeToPersonalCollection() {
@@ -78,7 +73,7 @@ public class WranglerApp {
         personalCollection.addRecipeToCollection(name, time, instruct, ingredientsArray);
     }
 
-    public List<String> addIngredientsLoop(Boolean moreIng, List<String> ingredient) {
+    private List<String> addIngredientsLoop(Boolean moreIng, List<String> ingredient) {
         while (moreIng) {
             System.out.println("Please input an ingredient required, or type 'false'"
                     + "if no more are needed");
@@ -97,5 +92,60 @@ public class WranglerApp {
         return ingredient;
     }
 
+    private String[] ingredientInPut() {
+        List<String> tempList = new ArrayList<>();
+        String[] tempArray;
+        Boolean cont = true;
+        Scanner input = new Scanner(System.in);
 
+        while (cont) {
+            System.out.println("Please type an ingredient you don't want"
+                    + "in your recipe, or type 'false' if no more");
+
+            String ingredient = input.next();
+            ingredient += input.nextLine();
+
+            if (ingredient.equals("false")) {
+                cont = false;
+
+            } else {
+                tempList.add(ingredient);
+            }
+        }
+
+        tempArray = tempList.toArray(new String[0]);
+        return tempArray;
+    }
+
+    private void runOptions(String actionn) {
+
+        Scanner input = new Scanner(System.in);
+
+        if (actionn.equals("add")) {
+            addRecipeToPersonalCollection();
+        }
+        if (actionn.equals("time")) {
+            System.out.println("What's the longest you want to cook for?");
+            Integer freeTime = input.nextInt();
+            personalCollection.filterRecipesByTime(freeTime);
+        }
+        if (actionn.equals("ingredients")) {
+            String[] unwantedIngredients = ingredientInPut();
+            personalCollection.filterRecipesByIngredients(unwantedIngredients);
+        }
+        if (actionn.equals("vegt")) {
+            personalCollection.filterRecipesVegetarian();
+        }
+        if (actionn.equals("vega")) {
+            personalCollection.filterRecipesVegan();
+        }
+        if (actionn.equals("keto")) {
+            personalCollection.filterRecipesKeto();
+        }
+    }
 }
+
+
+
+
+
