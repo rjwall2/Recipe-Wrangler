@@ -54,7 +54,7 @@ public class WranglerApp {
         name = input.next();
         name += input.nextLine();
 
-        System.out.println("Please input time needed to make recipe");
+        System.out.println("Please input time needed to make recipe (in minutes)");
         time = input.nextInt();
 
         System.out.println("Please input the instructions of the recipe");
@@ -126,7 +126,7 @@ public class WranglerApp {
             addRecipeToPersonalCollection();
         }
         if (actionn.equals("time")) {
-            System.out.println("What's the longest you want to cook for?");
+            System.out.println("What's the longest you want to cook for? (in minutes)");
             Integer freeTime = input.nextInt();
             System.out.println(getFilteredNames(personalCollection.filterRecipesByTime(freeTime)));
         }
