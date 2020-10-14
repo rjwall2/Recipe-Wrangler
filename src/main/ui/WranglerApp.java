@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Recipe;
 import model.RecipeCollection;
 
 public class WranglerApp {
@@ -127,21 +128,30 @@ public class WranglerApp {
         if (actionn.equals("time")) {
             System.out.println("What's the longest you want to cook for?");
             Integer freeTime = input.nextInt();
-            personalCollection.filterRecipesByTime(freeTime);
+            System.out.println(getFilteredNames(personalCollection.filterRecipesByTime(freeTime)));
         }
         if (actionn.equals("ingredients")) {
             String[] unwantedIngredients = ingredientInPut();
-            personalCollection.filterRecipesByIngredients(unwantedIngredients);
+            System.out.println(getFilteredNames(personalCollection.filterRecipesByIngredients(unwantedIngredients)));
         }
         if (actionn.equals("vegt")) {
-            personalCollection.filterRecipesVegetarian();
+            System.out.println(getFilteredNames(personalCollection.filterRecipesVegetarian()));
         }
         if (actionn.equals("vega")) {
-            personalCollection.filterRecipesVegan();
+            System.out.println(getFilteredNames(personalCollection.filterRecipesVegan()));
         }
         if (actionn.equals("keto")) {
-            personalCollection.filterRecipesKeto();
+            System.out.println(getFilteredNames(personalCollection.filterRecipesKeto()));
         }
+    }
+
+    //EFFECTS: takes a list of recipes and returns a list of the names of the recipes contained
+    private List<String> getFilteredNames(List<Recipe> filteredRecipeList) {
+        List<String> nameList = new ArrayList<>();
+        for (Recipe r: filteredRecipeList) {
+            nameList.add(r.getRecipeName());
+        }
+        return nameList;
     }
 }
 
