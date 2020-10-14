@@ -24,6 +24,7 @@ public class RecipeCollectionTest {
                 "Beef", "Pork", "Broccoli");
     }
 
+
     @Test
     public void recipeCollectionConstructorTest() {
         RecipeCollection emptyListObject = new RecipeCollection();
@@ -31,6 +32,7 @@ public class RecipeCollectionTest {
 
         assertEquals(0, emptyList.size());
     }
+
 
     @Test
     public void addRecipeToCollectionTest() {
@@ -65,6 +67,7 @@ public class RecipeCollectionTest {
         assertEquals("Salad", itemTwo.getRecipeName());
     }
 
+
     @Test
     public void filterRecipesByVegetarianNone() {
         RecipeCollection testRecipeCollectionBeta = new RecipeCollection();
@@ -75,6 +78,7 @@ public class RecipeCollectionTest {
 
         assertEquals(0, vegetarianList.size());
     }
+
 
     @Test
     public void filterRecipesByVegetarianTest() {
@@ -88,6 +92,7 @@ public class RecipeCollectionTest {
         assertEquals("Salad", secondItem.getRecipeName());
     }
 
+
     @Test
     public void filterRecipesByVeganNone() {
         RecipeCollection testRecipeCollectionBeta = new RecipeCollection();
@@ -99,6 +104,7 @@ public class RecipeCollectionTest {
         assertEquals(0, veganList.size());
     }
 
+
     @Test
     public void filterRecipesByVeganTest() {
         List<Recipe> veganList = testRecipeCollection.filterRecipesVegan();
@@ -107,6 +113,7 @@ public class RecipeCollectionTest {
         Recipe onlyItem = veganList.get(0);
         assertEquals("Salad", onlyItem.getRecipeName());
     }
+
 
     @Test
     public void filterRecipesByKetoNone() {
@@ -118,6 +125,7 @@ public class RecipeCollectionTest {
 
         assertEquals(0, ketoList.size());
     }
+
 
     @Test
     public void filterRecipesByKeto() {
@@ -131,6 +139,7 @@ public class RecipeCollectionTest {
         assertEquals("Meat Lover", secondItem.getRecipeName());
     }
 
+
     @Test
     public void filterRecipesByTimeUsualCaseTest() {
         List<Recipe> timeList = testRecipeCollection.filterRecipesByTime(40);
@@ -143,6 +152,7 @@ public class RecipeCollectionTest {
         assertEquals("Meat Lover", lastItem.getRecipeName());
 
     }
+
 
     @Test
     public void filterRecipesByTimeEdgeAndNone() {
