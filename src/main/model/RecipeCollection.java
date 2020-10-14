@@ -8,10 +8,12 @@ public class RecipeCollection {
 
     private List<Recipe> recipeCollection;
 
+
     //EFFECTS: Builds a new RecipeCollection, with recipeCollection field initially empty
     public RecipeCollection() {
         recipeCollection = new ArrayList<>();
     }
+
 
     //REQUIRES: all parameters must be filled, all strings passed in ing must have the first
     //          letter capitalized, be singular, and must be a food.
@@ -21,6 +23,7 @@ public class RecipeCollection {
         Recipe newRecipe = new Recipe(name, time, instruct, ing);
         recipeCollection.add(newRecipe);
     }
+
 
     //REQUIRES: ing must consist of at least one string, all strings passed in ing must have
     //          the first letter capitalized, be singular, and must be a food.
@@ -37,6 +40,7 @@ public class RecipeCollection {
         return filteredList;
     }
 
+
     //EFFECTS: Takes a RecipeCollection, and creates a new list of vegetarian Recipes from the RecipesCollection
     public List<Recipe> filterRecipesVegetarian() {
         List<Recipe> filteredList = new ArrayList<>();
@@ -48,6 +52,7 @@ public class RecipeCollection {
         }
         return filteredList;
     }
+
 
     //EFFECTS: Takes a RecipeCollection, and creates a new list of vegan Recipes from the RecipeCollection
     public List<Recipe> filterRecipesVegan() {
@@ -61,6 +66,7 @@ public class RecipeCollection {
         return filteredList;
     }
 
+
     //EFFECTS: Takes a RecipeCollection, and creates a new list of ketogenic Recipes from the RecipeCollection
     public List<Recipe> filterRecipesKeto() {
         List<Recipe> filteredList = new ArrayList<>();
@@ -72,6 +78,7 @@ public class RecipeCollection {
         }
         return filteredList;
     }
+
 
     //EFFECTS: Takes a RecipeCollection, and creates a new list of Recipes with time less than or
     //         equal to num from the RecipesCollection
@@ -85,6 +92,7 @@ public class RecipeCollection {
         }
         return filteredList;
     }
+
 
     public List<Recipe> getRecipeCollection() {
         return recipeCollection;

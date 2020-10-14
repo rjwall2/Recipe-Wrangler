@@ -10,6 +10,7 @@ public class Recipe {
     private Ingredients ingredientsNeeded;
     private String instructions;
 
+
     //REQUIRES: first letter of each string in ing must be capitalized,singular,
     //          and must be a food. No parameters may be left empty.
     //EFFECTS: new recipe is made where recipe name is set to namee, recipe time is set to
@@ -23,18 +24,22 @@ public class Recipe {
         instructions = instruct;
     }
 
+
     public String getRecipeName() {
         return name;
     }
+
 
     public Integer getRecipeTime() {
         return time;
     }
 
+
     //EFFECTS: returns the List<String> of ingredients within in a recipe
     public Ingredients getRecipeIngredients() {
         return ingredientsNeeded;
     }
+
 
     public String getRecipeInstructions() {
         return instructions;

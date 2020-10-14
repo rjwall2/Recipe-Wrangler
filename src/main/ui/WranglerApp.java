@@ -7,13 +7,22 @@ import java.util.Scanner;
 import model.Recipe;
 import model.RecipeCollection;
 
+//RecipeWrangler application
 public class WranglerApp {
 
     RecipeCollection personalCollection = new RecipeCollection();
 
+
+    //EFFECTS: runs the RecipeWrangler application
+
     public WranglerApp() {
         runWrangler();
     }
+
+
+    //MODIFIES: this
+    //EFFECTS: processes user input and executes program accordingly, adds one recipe to collection initially,
+    //         terminates app with user input 'end'
 
     private void runWrangler() {
 
@@ -40,6 +49,10 @@ public class WranglerApp {
             runOptions(action);
         }
     }
+
+
+    //MODIFIES:this
+    //EFFECTS: takes user input and uses it to add a new recipe
 
     private void addRecipeToPersonalCollection() {
         String name;
@@ -74,6 +87,9 @@ public class WranglerApp {
         personalCollection.addRecipeToCollection(name, time, instruct, ingredientsArray);
     }
 
+
+    //EFFECTS: processes the multiple inputs possible for ingredients to be added to new recipe
+
     private List<String> addIngredientsLoop(Boolean moreIng, List<String> ingredient) {
         while (moreIng) {
             System.out.println("Please input an ingredient required, or type 'false'"
@@ -92,6 +108,9 @@ public class WranglerApp {
         }
         return ingredient;
     }
+
+
+    //EFFECTS: processes the multiple inputs possible for ingredients to filter recipes by
 
     private String[] ingredientInPut() {
         List<String> tempList = new ArrayList<>();
@@ -117,6 +136,9 @@ public class WranglerApp {
         tempArray = tempList.toArray(new String[0]);
         return tempArray;
     }
+
+
+    //EFFECTS: processes user command and executes the appropriate action
 
     private void runOptions(String actionn) {
 
@@ -145,7 +167,9 @@ public class WranglerApp {
         }
     }
 
+
     //EFFECTS: takes a list of recipes and returns a list of the names of the recipes contained
+
     private List<String> getFilteredNames(List<Recipe> filteredRecipeList) {
         List<String> nameList = new ArrayList<>();
         for (Recipe r: filteredRecipeList) {

@@ -17,6 +17,7 @@ public class Ingredients {
 
     private List<String> ingredientList;
 
+
     //REQUIRES: first letter of each ingredient must be capitalized,singular,
     //          and must be a food. arg must consist of at least one string.
     //EFFECTS: creates a list of ingredients, consisting of arg (the arbitrary number of strings passed)
@@ -25,6 +26,7 @@ public class Ingredients {
         ingredientList = new ArrayList<>();
         ingredientList.addAll(Arrays.asList(arg));
     }
+
 
     //REQUIRES: ing must be a food,singular, with the first letter capitalized
     //EFFECTS: returns true if the ingredient ing is contained in a list of ingredients,
@@ -38,6 +40,7 @@ public class Ingredients {
         }
         return false;
     }
+
 
     //REQUIRES: all strings passed as arg must be a food,singular, and have the first letter capitalized
     //EFFECTS: takes an arbitrary amount of foods and returns true if any one of them is
@@ -66,6 +69,7 @@ public class Ingredients {
         return true;
     }
 
+
     //EFFECTS: returns true if list of ingredients is vegan, and false if it is not
 
     public Boolean vegan() {
@@ -79,6 +83,7 @@ public class Ingredients {
         return true;
     }
 
+
     //EFFECTS: returns true if list of ingredients is ketogenic, and false if it is not
 
     public Boolean keto() {
@@ -89,6 +94,7 @@ public class Ingredients {
         }
         return true;
     }
+
 
     public List<String> getIngredients() {
         return ingredientList;
