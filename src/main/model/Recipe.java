@@ -1,5 +1,8 @@
 package model;
 
+import java.util.List;
+import java.util.ArrayList;
+import org.json.JSONObject;
 
 //represents a recipe consisting of a name, the time needed to complete it, a list of
 //ingredients required, and the instructions on how to make it
@@ -44,4 +47,22 @@ public class Recipe {
     public String getRecipeInstructions() {
         return instructions;
     }
+
+
+    //CITATION: convertToJson method is based on (CPSC210/JsonSerializationDemo by Paul Carter)
+    //          the toJson method in the WorkRoom class
+
+    //EFFECTS: converts and produces a copy of a recipe as a jsonObject
+    public JSONObject convertToJson() {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("name",name);
+        jsonObj.put("time", time);
+        jsonObj.put("instructions",instructions);
+        List<String> ingredientsNeededList = ingredientsNeeded.getIngredients();
+        String[] ingredientsNeededArray = ingredientsNeededList.toArray(new String[0]);
+        jsonObj.put("ingredients",ingredientsNeededArray);
+
+        return jsonObj;
+    }
 }
+

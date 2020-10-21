@@ -1,16 +1,20 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import persistence.JsonWrite;
 import model.Recipe;
 import model.RecipeCollection;
 
 //RecipeWrangler application
 public class WranglerApp {
 
+    String dataDestination = "./data/personalcollection.json";
     RecipeCollection personalCollection = new RecipeCollection();
+    JsonWrite jsonWriter = new JsonWrite(dataDestination);
 
 
     //EFFECTS: runs the RecipeWrangler application
@@ -38,6 +42,7 @@ public class WranglerApp {
 
             System.out.println("Do you want to: add another recipe(type 'add'),filter by time (type 'time'),"
                     + "filter by diet(type'vegt','vega',or'keto'), filter by ingredients(type 'ingredients'),"
+                    + "save recipe collection(type 'save'), load previous recipe collection(type 'load'),"
                     + "end session (type 'end')");
 
             String action = input.next();
@@ -146,24 +151,23 @@ public class WranglerApp {
 
         if (actionn.equals("add")) {
             addRecipeToPersonalCollection();
-        }
-        if (actionn.equals("time")) {
+        } else if (actionn.equals("time")) {
             System.out.println("What's the longest you want to cook for? (in minutes)");
             Integer freeTime = input.nextInt();
             System.out.println(getFilteredNames(personalCollection.filterRecipesByTime(freeTime)));
-        }
-        if (actionn.equals("ingredients")) {
+        } else if (actionn.equals("ingredients")) {
             String[] unwantedIngredients = ingredientInPut();
             System.out.println(getFilteredNames(personalCollection.filterRecipesByIngredients(unwantedIngredients)));
-        }
-        if (actionn.equals("vegt")) {
+        } else if (actionn.equals("vegt")) {
             System.out.println(getFilteredNames(personalCollection.filterRecipesVegetarian()));
-        }
-        if (actionn.equals("vega")) {
+        } else if (actionn.equals("vega")) {
             System.out.println(getFilteredNames(personalCollection.filterRecipesVegan()));
-        }
-        if (actionn.equals("keto")) {
+        } else if (actionn.equals("keto")) {
             System.out.println(getFilteredNames(personalCollection.filterRecipesKeto()));
+        } else if (actionn.equals("save")) {
+            saveRecipeCollection();
+        } else if (actionn.equals("load")) {
+            System.out.println(" ");
         }
     }
 
@@ -177,6 +181,24 @@ public class WranglerApp {
         }
         return nameList;
     }
+
+
+    //CITATION: saveRecipeCollection method is based on (CPSC210/JsonSerializationDemo by Paul Carter)
+    //          the saveWorkRoom method in the WorkRoomApp class
+
+    //EFFECTS: saves personal collection to file
+    private void saveRecipeCollection() {
+        try {
+            jsonWriter.createDestination();
+            jsonWriter.saveData(personalCollection);
+            jsonWriter.close();
+            System.out.println("Saved");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save");
+        }
+    }
+
+
 }
 
 

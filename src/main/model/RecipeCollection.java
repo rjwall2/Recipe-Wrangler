@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +99,31 @@ public class RecipeCollection {
 
     public List<Recipe> getRecipeCollection() {
         return recipeCollection;
+    }
+
+
+    //CITATION: convertToSingleJson method is based on (CPSC210/JsonSerializationDemo by Paul Carter)
+    //          the toJson method in the WorkRoom class
+
+    //EFFECTS: converts a jsonArray into a single jsonObject
+    public JSONObject convertToSingleJsonObject() {
+        JSONObject json = new JSONObject();
+        json.put("Recipes",convertToJsonArray());
+
+        return json;
+    }
+
+
+    //CITATION: convertToJsonArray method is based on (CPSC210/JsonSerializationDemo by Paul Carter)
+    //          the thingiesToJson method in the WorkRoom class
+
+    //EFFECTS: converts a list of recipes into a jsonArray
+    public JSONArray convertToJsonArray() {
+        JSONArray jsonArr = new JSONArray();
+        for (Recipe r: recipeCollection) {
+            jsonArr.put(r.convertToJson());
+        }
+        return jsonArr;
     }
 
 }
