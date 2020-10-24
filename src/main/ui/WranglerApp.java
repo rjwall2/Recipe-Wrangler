@@ -28,25 +28,30 @@ public class WranglerApp {
 
 
     //MODIFIES: this
-    //EFFECTS: processes user input and executes program accordingly, adds one recipe to collection initially,
-    //         terminates app with user input 'end'
+    //EFFECTS: processes user input and executes program accordingly, adds one recipe to collection initially or
+    //         loads previous saved session. Terminates app with user input 'end'
 
     private void runWrangler() {
 
         Scanner input = new Scanner(System.in);
         Boolean keepGoing = true;
 
-        System.out.println("Hi, welcome to RecipeWrangler, let's add a recipe to your "
-                + "personal" + "database!");
+        System.out.println("Hi, welcome to RecipeWrangler, do you want to work off a previously "
+                + "made collection (type 'load'), or start a new personal collection? (type 'new')");
 
-        addRecipeToPersonalCollection();
+        String launch = input.next();
+
+        if (launch.equals("load")) {
+            loadRecipeCollection();
+        } else if (launch.equals("new")) {
+            addRecipeToPersonalCollection();
+        }
 
         while (keepGoing) {
 
             System.out.println("Do you want to: add another recipe(type 'add'),filter by time (type 'time'),"
                     + "filter by diet(type 'vegt','vega',or 'keto'), filter by ingredients(type 'ingredients'),"
-                    + "save recipe collection(type 'save'), load previous recipe collection(type 'load'),"
-                    + "end session (type 'end')");
+                    + "save recipe collection(type 'save'), end session (type 'end')");
 
             String action = input.next();
 
@@ -169,8 +174,6 @@ public class WranglerApp {
             System.out.println(getFilteredNames(personalCollection.filterRecipesKeto()));
         } else if (actionn.equals("save")) {
             saveRecipeCollection();
-        } else if (actionn.equals("load")) {
-            loadRecipeCollection();
         }
     }
 

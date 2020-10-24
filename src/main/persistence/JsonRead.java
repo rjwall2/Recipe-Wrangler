@@ -1,6 +1,5 @@
 package persistence;
 
-import model.Recipe;
 import model.RecipeCollection;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,11 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-import org.json.*;
 
 //CITATION: JsonRead class and all it's methods are based on (CPSC210/JsonSerializationDemo by Paul Carter)
 //          class JsonReader and all it's contained methods
 
+// Represents a reader that reads personal collection from JSON data stored in file
 public class JsonRead {
     private String source;
 
