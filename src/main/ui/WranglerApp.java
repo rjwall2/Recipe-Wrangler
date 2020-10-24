@@ -1,10 +1,12 @@
 package ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import persistence.JsonRead;
 import persistence.JsonWrite;
 import model.Recipe;
 import model.RecipeCollection;
@@ -15,6 +17,7 @@ public class WranglerApp {
     String dataDestination = "./data/personalcollection.json";
     RecipeCollection personalCollection = new RecipeCollection();
     JsonWrite jsonWriter = new JsonWrite(dataDestination);
+    JsonRead jsonReader = new JsonRead(dataDestination);
 
 
     //EFFECTS: runs the RecipeWrangler application
@@ -41,7 +44,7 @@ public class WranglerApp {
         while (keepGoing) {
 
             System.out.println("Do you want to: add another recipe(type 'add'),filter by time (type 'time'),"
-                    + "filter by diet(type'vegt','vega',or'keto'), filter by ingredients(type 'ingredients'),"
+                    + "filter by diet(type 'vegt','vega',or 'keto'), filter by ingredients(type 'ingredients'),"
                     + "save recipe collection(type 'save'), load previous recipe collection(type 'load'),"
                     + "end session (type 'end')");
 
@@ -86,7 +89,7 @@ public class WranglerApp {
         ingredientsList.add(singleIngredient);
         moreIngredients = true;
 
-        List<String> updatedIngredientsList = addIngredientsLoop(moreIngredients,ingredientsList);
+        List<String> updatedIngredientsList = addIngredientsLoop(moreIngredients, ingredientsList);
 
         String[] ingredientsArray = updatedIngredientsList.toArray(new String[0]);
         personalCollection.addRecipeToCollection(name, time, instruct, ingredientsArray);
@@ -167,7 +170,7 @@ public class WranglerApp {
         } else if (actionn.equals("save")) {
             saveRecipeCollection();
         } else if (actionn.equals("load")) {
-            System.out.println(" ");
+            loadRecipeCollection();
         }
     }
 
@@ -176,7 +179,7 @@ public class WranglerApp {
 
     private List<String> getFilteredNames(List<Recipe> filteredRecipeList) {
         List<String> nameList = new ArrayList<>();
-        for (Recipe r: filteredRecipeList) {
+        for (Recipe r : filteredRecipeList) {
             nameList.add(r.getRecipeName());
         }
         return nameList;
@@ -199,7 +202,20 @@ public class WranglerApp {
     }
 
 
+    //CITATION: saveRecipeCollection method is based on (CPSC210/JsonSerializationDemo by Paul Carter)
+    //          the saveWorkRoom method in the WorkRoomApp class
+
+    //EFFECTS: loads personal collection from file
+    private void loadRecipeCollection() {
+        try {
+            personalCollection = jsonReader.read();
+            System.out.println("Data loaded");
+        } catch (IOException e) {
+            System.out.println("Unable to read from file from personal collection");
+        }
+    }
 }
+
 
 
 

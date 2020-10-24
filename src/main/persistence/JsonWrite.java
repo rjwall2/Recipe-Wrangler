@@ -8,8 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 
-//CITATION: JsonWrite class and it's methods are based on (CPSC210/JsonSerializationDemo by Paul Carter)
-//          class JsonWriter and it's contained methods
+//CITATION: JsonWrite class and all it's methods are based on (CPSC210/JsonSerializationDemo by Paul Carter)
+//          class JsonWriter and all it's contained methods
 
 
 // Represents a writer that writes JSON representation of recipe collection to file
