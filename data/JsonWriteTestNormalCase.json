@@ -1,0 +1,22 @@
+{"Recipes": [
+  {
+    "instructions": "Mash",
+    "name": "Mashed Potato",
+    "ingredients": [
+      "Potato",
+      "Butter",
+      "Milk"
+    ],
+    "time": 30
+  },
+  {
+    "instructions": "Blend",
+    "name": "Juice",
+    "ingredients": [
+      "Apple",
+      "Pear",
+      "Water"
+    ],
+    "time": 5
+  }
+]}
