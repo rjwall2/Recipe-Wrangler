@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-import java.util.ArrayList;
 import org.json.JSONObject;
 
 //represents a recipe consisting of a name, the time needed to complete it, a list of
