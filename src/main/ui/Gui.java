@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Gui implements ActionListener {
 
@@ -18,11 +19,46 @@ public class Gui implements ActionListener {
     JsonWrite jsonWriter = new JsonWrite(dataDestination);
     JsonRead jsonReader = new JsonRead(dataDestination);
     JFrame firstWindow;
+    JFrame menuWindow;
+    Panel operationPanel;
+    Panel recipeListPanel;
+
+    JButton timeB;
+    JButton saveB;
+    JButton addB;
+    JButton endB;
+    JButton ingredientB;
+    JButton ketoB;
+    JButton vegeB;
+    JButton veganB;
 
 
     public Gui() {
         loadOrNewWindow();
     }
+
+    private void menuWindow() {
+        menuWindow = new JFrame("Recipe Collection Actions");
+        menuWindow.setLayout(new BorderLayout());
+        menuWindow.setSize(700,300);
+        menuWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        operationPanel = new Panel();
+        recipeListPanel = new Panel();
+
+        menuWindow.add(operationPanel, BorderLayout.SOUTH);
+        menuWindow.add(recipeListPanel, BorderLayout.NORTH);
+
+        setButtons();
+
+
+        menuWindow.setVisible(true);
+
+    }
+
+
+
+
 
     private void loadOrNewWindow() {
         firstWindow = new JFrame("Load or New?");
@@ -60,8 +96,25 @@ public class Gui implements ActionListener {
         if (e.getActionCommand().equals("load")) {
             loadRecipeCollection();
             firstWindow.dispose();
+            menuWindow();
         } else if (e.getActionCommand().equals("new")) {
             firstWindow.dispose();
+            menuWindow();
+        } else if (e.getActionCommand().equals("time")) {
+
+        } else if (e.getActionCommand().equals("save")) {
+            saveRecipeCollection();
+        } else if (e.getActionCommand().equals("add")) {
+
+        } else if (e.getActionCommand().equals("end")) {
+
+        } else if (e.getActionCommand().equals("ingredient")) {
+
+        } else if (e.getActionCommand().equals("keto")) {
+
+        } else if (e.getActionCommand().equals("vege")) {
+
+        } else if (e.getActionCommand().equals("vegan")) {
 
         }
 
@@ -94,5 +147,42 @@ public class Gui implements ActionListener {
         } catch (IOException e) {
             System.out.println("Unable to read from file from personal collection");
         }
+    }
+
+    private void setButtons() {
+
+        ArrayList<JButton> buttonList = new ArrayList<JButton>();
+
+        buttonList.add(timeB = new JButton("time"));
+        buttonList.add(saveB = new JButton("save"));
+        buttonList.add(addB = new JButton("add"));
+        buttonList.add(endB = new JButton("end"));
+        buttonList.add(ingredientB = new JButton("ingredient"));
+        buttonList.add(ketoB = new JButton("keto"));
+        buttonList.add(vegeB = new JButton("vege"));
+        buttonList.add(veganB = new JButton("vegan"));
+
+
+        for (JButton b : buttonList) {
+            b.addActionListener(this);
+            operationPanel.add(b);
+        }
+
+        timeB.setActionCommand("time");
+
+        saveB.setActionCommand("save");
+
+        addB.setActionCommand("add");
+
+        endB.setActionCommand("end");
+
+        ingredientB.setActionCommand("ingredient");
+
+        ketoB.setActionCommand("keto");
+
+        vegeB.setActionCommand("vege");
+
+        veganB.setActionCommand("vegan");
+
     }
 }
