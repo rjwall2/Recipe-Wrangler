@@ -7,12 +7,15 @@ import model.RecipeCollection;
 import persistence.JsonRead;
 import persistence.JsonWrite;
 
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -120,16 +123,15 @@ public class Gui implements ActionListener {
         } else if (e.getActionCommand().equals("new")) {
             newRecipeListBegin();
         } else if (e.getActionCommand().equals("time")) {
-            runTimeWindow();
+            timeActivity();
         } else if (e.getActionCommand().equals("save")) {
             savingActivity();
         } else if (e.getActionCommand().equals("add")) {
             addRecipeToPersonalCollection();
         } else if (e.getActionCommand().equals("end")) {
-
+            System.exit(1);
         } else if (e.getActionCommand().equals("ingredient")) {
-            String[] unwantedIngredients = ingredientInPut();
-            System.out.println(getFilteredNames(personalCollection.filterRecipesByIngredients(unwantedIngredients)));
+            ingredientActivity();
         } else if (e.getActionCommand().equals("keto")) {
             ketoWindow();
         } else if (e.getActionCommand().equals("veget")) {
@@ -140,6 +142,16 @@ public class Gui implements ActionListener {
             timeBottomPanel.add(popUpTimeButtonProcess());
 
         }
+    }
+
+    private void timeActivity() {
+        playSound("sound/hd-stardust-crusaders-za-warudo_1.wav");
+        runTimeWindow();
+    }
+
+    private void ingredientActivity() {
+        String[] unwantedIngredients = ingredientInPut();
+        System.out.println(getFilteredNames(personalCollection.filterRecipesByIngredients(unwantedIngredients)));
     }
 
     private void loadOldListBegin() {
@@ -328,8 +340,7 @@ public class Gui implements ActionListener {
     }
 
     public int jtextToInteger() {
-        Integer cookingTime = parseInt(userTime.getText());
-        return cookingTime;
+        return parseInt(userTime.getText());
     }
 
     public JList popUpTimeButtonProcess() {
@@ -428,6 +439,23 @@ public class Gui implements ActionListener {
         newArray = list.toArray(newArray);
         JList newJList = (new JList(newArray));
         return newJList;
+    }
+
+
+    //CITATION: playSound method is based on the playMusic method shown in the youtube video
+    //          https://www.youtube.com/watch?v=TErboGLHZGA by Max O'Didily
+    public void playSound(String fileHome) {
+
+        try {
+            File musicLocation = new File(fileHome);
+            AudioInputStream foundMusic = AudioSystem.getAudioInputStream(musicLocation);
+            Clip clip = AudioSystem.getClip();
+            clip.open(foundMusic);
+            clip.start();
+
+        } catch (Exception e) {
+            System.out.println("Missing audio file");
+        }
     }
 
 
