@@ -116,35 +116,48 @@ public class Gui implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("load")) {
-            loadRecipeCollection();
-            firstWindow.dispose();
-            menuWindow();
+            loadOldListBegin();
         } else if (e.getActionCommand().equals("new")) {
-            firstWindow.dispose();
-            saveRecipeCollection();
-            menuWindow();
+            newRecipeListBegin();
         } else if (e.getActionCommand().equals("time")) {
             runTimeWindow();
         } else if (e.getActionCommand().equals("save")) {
-            saveRecipeCollection();
-            recipeListPanel.removeAll();
-            updatePersonalCollectionDisplay();
+            savingActivity();
         } else if (e.getActionCommand().equals("add")) {
             addRecipeToPersonalCollection();
         } else if (e.getActionCommand().equals("end")) {
 
         } else if (e.getActionCommand().equals("ingredient")) {
-
+            String[] unwantedIngredients = ingredientInPut();
+            System.out.println(getFilteredNames(personalCollection.filterRecipesByIngredients(unwantedIngredients)));
         } else if (e.getActionCommand().equals("keto")) {
-
-        } else if (e.getActionCommand().equals("vege")) {
-
+            ketoWindow();
+        } else if (e.getActionCommand().equals("veget")) {
+            vegetWindow();
         } else if (e.getActionCommand().equals("vegan")) {
-
+            veganWindow();
         } else if (e.getActionCommand().equals("popuptime")) {
             timeBottomPanel.add(popUpTimeButtonProcess());
 
         }
+    }
+
+    private void loadOldListBegin() {
+        loadRecipeCollection();
+        firstWindow.dispose();
+        menuWindow();
+    }
+
+    private void newRecipeListBegin() {
+        firstWindow.dispose();
+        saveRecipeCollection();
+        menuWindow();
+    }
+
+    private void savingActivity() {
+        saveRecipeCollection();
+        recipeListPanel.removeAll();
+        updatePersonalCollectionDisplay();
     }
 
     //CITATION: saveRecipeCollection method is based on (CPSC210/JsonSerializationDemo by Paul Carter)
@@ -196,7 +209,7 @@ public class Gui implements ActionListener {
         buttonList.add(endB = new JButton("end"));
         buttonList.add(ingredientB = new JButton("ingredient"));
         buttonList.add(ketoB = new JButton("keto"));
-        buttonList.add(vegeB = new JButton("vege"));
+        buttonList.add(vegeB = new JButton("veget"));
         buttonList.add(veganB = new JButton("vegan"));
 
 
@@ -217,7 +230,7 @@ public class Gui implements ActionListener {
 
         ketoB.setActionCommand("keto");
 
-        vegeB.setActionCommand("vege");
+        vegeB.setActionCommand("veget");
 
         veganB.setActionCommand("vegan");
 
@@ -328,6 +341,93 @@ public class Gui implements ActionListener {
         timeNamesArray = timeNamesList.toArray(timeNamesArray);
         JList filteredTimeJList = (new JList(timeNamesArray));
         return filteredTimeJList;
+    }
+
+
+    //EFFECTS: processes the multiple inputs possible for ingredients to filter recipes by
+
+    private String[] ingredientInPut() {
+        List<String> tempList = new ArrayList<>();
+        String[] tempArray;
+        Boolean cont = true;
+        Scanner input = new Scanner(System.in);
+
+        while (cont) {
+            System.out.println("Please type an ingredient you don't want"
+                    + "in your recipe, or type 'false' if no more");
+
+            String ingredient = input.next();
+            ingredient += input.nextLine();
+
+            if (ingredient.equals("false")) {
+                cont = false;
+
+            } else {
+                tempList.add(ingredient);
+            }
+        }
+
+        tempArray = tempList.toArray(new String[0]);
+        return tempArray;
+    }
+
+    public void vegetWindow() {
+        JFrame vegetPopUp = new JFrame("Vegetarian Filter");
+        vegetPopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        vegetPopUp.setSize(700,400);
+
+
+
+        JList vegetarianJList = listToJlistConverter(getFilteredNames(personalCollection.filterRecipesVegetarian()));
+
+        Panel displayPanel = new Panel();
+        vegetPopUp.add(displayPanel);
+
+        displayPanel.add(vegetarianJList);
+
+        vegetPopUp.setVisible(true);
+    }
+
+    public void veganWindow() {
+        JFrame veganPopUp = new JFrame("Vegan Filter");
+        veganPopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        veganPopUp.setSize(700,400);
+
+
+
+        JList veganJList = listToJlistConverter(getFilteredNames(personalCollection.filterRecipesVegan()));
+
+        Panel displayPanel = new Panel();
+        veganPopUp.add(displayPanel);
+
+        displayPanel.add(veganJList);
+
+        veganPopUp.setVisible(true);
+    }
+
+    public void ketoWindow() {
+        JFrame ketoPopUp = new JFrame("Ketogenic Filter");
+        ketoPopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        ketoPopUp.setSize(700,400);
+
+
+
+        JList ketoJList = listToJlistConverter(getFilteredNames(personalCollection.filterRecipesKeto()));
+
+        Panel displayPanel = new Panel();
+        ketoPopUp.add(displayPanel);
+
+        displayPanel.add(ketoJList);
+
+        ketoPopUp.setVisible(true);
+    }
+
+    public JList listToJlistConverter(List<String> list) {
+
+        String[] newArray = new String[list.size()];
+        newArray = list.toArray(newArray);
+        JList newJList = (new JList(newArray));
+        return newJList;
     }
 
 
