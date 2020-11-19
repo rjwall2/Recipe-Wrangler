@@ -43,10 +43,6 @@ public class Recipe {
     }
 
 
-    public String getRecipeInstructions() {
-        return instructions;
-    }
-
 
     //CITATION: convertToJson method is based on (CPSC210/JsonSerializationDemo by Paul Carter)
     //          the toJson method in the WorkRoom class
