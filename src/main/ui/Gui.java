@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class Gui implements ActionListener {
 
     String dataDestination = "./data/personalcollection.json";
@@ -30,6 +32,11 @@ public class Gui implements ActionListener {
     JFrame menuWindow;
     Panel operationPanel;
     Panel recipeListPanel;
+
+    JFrame timePopUp;
+    JTextField userTime;
+    Panel timeTopPanel;
+    Panel timeBottomPanel;
 
     JButton timeB;
     JButton saveB;
@@ -117,7 +124,7 @@ public class Gui implements ActionListener {
             saveRecipeCollection();
             menuWindow();
         } else if (e.getActionCommand().equals("time")) {
-
+            runTimeWindow();
         } else if (e.getActionCommand().equals("save")) {
             saveRecipeCollection();
             recipeListPanel.removeAll();
@@ -134,8 +141,10 @@ public class Gui implements ActionListener {
 
         } else if (e.getActionCommand().equals("vegan")) {
 
-        }
+        } else if (e.getActionCommand().equals("popuptime")) {
+            timeBottomPanel.add(popUpTimeButtonProcess());
 
+        }
     }
 
     //CITATION: saveRecipeCollection method is based on (CPSC210/JsonSerializationDemo by Paul Carter)
@@ -166,6 +175,8 @@ public class Gui implements ActionListener {
             System.out.println("Unable to read from file from personal collection");
         }
     }
+
+    //EFFECTS: takes a list of recipes and returns a list of the names of the recipes contained
 
     private java.util.List<String> getFilteredNames(java.util.List<Recipe> filteredRecipeList) {
         List<String> nameList = new ArrayList<>();
@@ -268,6 +279,55 @@ public class Gui implements ActionListener {
             }
         }
         return ingredient;
+    }
+
+    public void runTimeWindow() {
+        timePopUp = new JFrame("Time filter");
+        timePopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        timePopUp.setSize(700,400);
+
+        timeTopPanel = new Panel();
+        timeBottomPanel = new Panel();
+
+        timePopUp.add(timeTopPanel,BorderLayout.NORTH);
+        timePopUp.add(timeBottomPanel,BorderLayout.SOUTH);
+
+        JLabel timePopUpQuestion = new JLabel("How long do you want to cook for?");
+        timePopUpQuestion.setBounds(150,30,400,150);
+        timeTopPanel.add(timePopUpQuestion);
+
+        userTime = new JTextField(22);
+        userTime.setBounds(150,55,100,100);
+        timeTopPanel.add(userTime);
+
+        JButton filterTime = new JButton("Cook");
+        timeTopPanel.add(filterTime);
+        filterTime.setBounds(300,150,150,30);
+
+        filterTime.setActionCommand("popuptime");
+        filterTime.addActionListener(this);
+
+
+        timePopUp.setVisible(true);
+
+
+
+    }
+
+    public int jtextToInteger() {
+        Integer cookingTime = parseInt(userTime.getText());
+        return cookingTime;
+    }
+
+    public JList popUpTimeButtonProcess() {
+
+        List<String> timeNamesList;
+        timeNamesList = getFilteredNames(personalCollection.filterRecipesByTime(jtextToInteger()));
+
+        String[] timeNamesArray = new String[timeNamesList.size()];
+        timeNamesArray = timeNamesList.toArray(timeNamesArray);
+        JList filteredTimeJList = (new JList(timeNamesArray));
+        return filteredTimeJList;
     }
 
 

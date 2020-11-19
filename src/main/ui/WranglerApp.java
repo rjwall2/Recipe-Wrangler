@@ -217,6 +217,7 @@ public class WranglerApp {
             System.out.println("Unable to read from file from personal collection");
         }
     }
+
 }
 
 
