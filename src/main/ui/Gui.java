@@ -58,7 +58,7 @@ public class Gui implements ActionListener {
     JButton vegeB;
     JButton veganB;
 
-
+    //EFFECTS: Launches new gui
     public Gui() {
         loadOrNewWindow();
     }

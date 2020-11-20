@@ -52,3 +52,14 @@ stores the instructions of recipe. The map was used in the gui,
 to allow the user to access the instructions of a recipe by inputting
 the recipes name
 
+
+###Phase 4: Task 3
+
+- some methods with very similar implementation could have been
+replaced with a single method encapsulating the similarities, and
+having key areas modifiable 
+
+- Could improve cohesion in the Gui class
+
+
+
