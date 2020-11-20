@@ -167,7 +167,7 @@ public class Gui implements ActionListener {
         menuWindow();
     }
 
-    //EFFECTS: executes activities for when starting a new save file has been chosen
+    //EFFECTS: executes activities for when starting a new save file has been selected
     private void newRecipeListBegin() {
         firstWindow.dispose();
         saveRecipeCollection();
