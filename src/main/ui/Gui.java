@@ -55,6 +55,9 @@ public class Gui implements ActionListener {
         loadOrNewWindow();
     }
 
+
+    //EFFECTS: creates window with buttons for possible operations to be done
+    //         to personal collection, also displays all recipes currently saved in personal collection
     private void menuWindow() {
         menuWindow = new JFrame("Recipe Collection Actions");
         menuWindow.setLayout(new BorderLayout());
@@ -75,6 +78,7 @@ public class Gui implements ActionListener {
 
     }
 
+    //EFFECTS: converts current personal collection to a Jlist that is displayed on the menu window
     private void updatePersonalCollectionDisplay() {
 
         currentCollectionRecipeList = personalCollection.filterRecipesByIngredients("");
@@ -84,7 +88,7 @@ public class Gui implements ActionListener {
         recipeListPanel.add(new JList(recipeNamesArray));
     }
 
-
+    //EFFECTS: creates initial window that prompts the user to load old save file or start a new save file
     private void loadOrNewWindow() {
         firstWindow = new JFrame("Load or New?");
         firstWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -144,28 +148,33 @@ public class Gui implements ActionListener {
         }
     }
 
+    //EFFECTS: executes activities for when time button is pressed
     private void timeActivity() {
         playSound("sound/hd-stardust-crusaders-za-warudo_1.wav");
         runTimeWindow();
     }
 
+    //EFFECTS: executes activities for when ingredient button is pressed
     private void ingredientActivity() {
         String[] unwantedIngredients = ingredientInPut();
         System.out.println(getFilteredNames(personalCollection.filterRecipesByIngredients(unwantedIngredients)));
     }
 
+    //EFFECTS: executes activities for when loading an old save file is selected
     private void loadOldListBegin() {
         loadRecipeCollection();
         firstWindow.dispose();
         menuWindow();
     }
 
+    //EFFECTS: executes activities for when starting a new save file has been chosen
     private void newRecipeListBegin() {
         firstWindow.dispose();
         saveRecipeCollection();
         menuWindow();
     }
 
+    //EFFECTS: executes activities for when saving current personal collection has been chosen
     private void savingActivity() {
         saveRecipeCollection();
         recipeListPanel.removeAll();
@@ -202,7 +211,6 @@ public class Gui implements ActionListener {
     }
 
     //EFFECTS: takes a list of recipes and returns a list of the names of the recipes contained
-
     private java.util.List<String> getFilteredNames(java.util.List<Recipe> filteredRecipeList) {
         List<String> nameList = new ArrayList<>();
         for (Recipe r : filteredRecipeList) {
@@ -211,6 +219,7 @@ public class Gui implements ActionListener {
         return nameList;
     }
 
+    //EFFECTS: creates and sets all buttons in menu window
     private void setButtons() {
 
         ArrayList<JButton> buttonList = new ArrayList<JButton>();
@@ -250,7 +259,6 @@ public class Gui implements ActionListener {
 
     //MODIFIES:this
     //EFFECTS: takes user input and uses it to add a new recipe
-
     private void addRecipeToPersonalCollection() {
         String name;
         Integer time;
@@ -286,7 +294,6 @@ public class Gui implements ActionListener {
 
 
     //EFFECTS: processes the multiple inputs possible for ingredients to be added to new recipe
-
     private List<String> addIngredientsLoop(Boolean moreIng, List<String> ingredient) {
         while (moreIng) {
             System.out.println("Please input an ingredient required, or type 'false'"
@@ -306,6 +313,7 @@ public class Gui implements ActionListener {
         return ingredient;
     }
 
+    //EFFECTS: creates new window for which the user can use to filter recipes by time
     public void runTimeWindow() {
         timePopUp = new JFrame("Time filter");
         timePopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -339,10 +347,12 @@ public class Gui implements ActionListener {
 
     }
 
+    //EFFECTS: converts string from userTime field into an integer
     public int jtextToInteger() {
         return parseInt(userTime.getText());
     }
 
+    //EFFECTS: executes the activities of the cook button that's in the window created by runTimeWindow
     public JList popUpTimeButtonProcess() {
 
         List<String> timeNamesList;
@@ -382,6 +392,7 @@ public class Gui implements ActionListener {
         return tempArray;
     }
 
+    //EFFECTS: creates window that displays the vegetarian recipes in personal collection
     public void vegetWindow() {
         JFrame vegetPopUp = new JFrame("Vegetarian Filter");
         vegetPopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -399,6 +410,7 @@ public class Gui implements ActionListener {
         vegetPopUp.setVisible(true);
     }
 
+    //EFFECTS: creates window that displays the vegan recipes in personal collection
     public void veganWindow() {
         JFrame veganPopUp = new JFrame("Vegan Filter");
         veganPopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -416,6 +428,7 @@ public class Gui implements ActionListener {
         veganPopUp.setVisible(true);
     }
 
+    //EFFECTS: creates window that displays the ketogenic recipes in personal collection
     public void ketoWindow() {
         JFrame ketoPopUp = new JFrame("Ketogenic Filter");
         ketoPopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -433,6 +446,7 @@ public class Gui implements ActionListener {
         ketoPopUp.setVisible(true);
     }
 
+    //EFFECTS: converts a list of string into a JList
     public JList listToJlistConverter(List<String> list) {
 
         String[] newArray = new String[list.size()];
@@ -444,6 +458,8 @@ public class Gui implements ActionListener {
 
     //CITATION: playSound method is based on the playMusic method shown in the youtube video
     //          https://www.youtube.com/watch?v=TErboGLHZGA by Max O'Didily
+    //REQUIRES: sound file contained in file location passed must be a .wav file
+    //EFFECTS: plays the sound clip contained in a specified file
     public void playSound(String fileHome) {
 
         try {
