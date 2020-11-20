@@ -236,7 +236,7 @@ public class Gui implements ActionListener {
         return nameList;
     }
 
-    //EFFECTS: creates and sets all buttons in menu window
+    //EFFECTS: creates and sets all buttons in the menu window
     private void setButtons() {
 
         ArrayList<JButton> buttonList = new ArrayList<JButton>();
