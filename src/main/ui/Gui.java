@@ -180,7 +180,6 @@ public class Gui implements ActionListener {
     //EFFECTS: executes activities for when loading an old save file is selected
     private void loadOldListBegin() {
         loadRecipeCollection();
-        personalCollection.addAllRecipesToMap();
         firstWindow.dispose();
         menuWindow();
     }

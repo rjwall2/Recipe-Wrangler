@@ -4,8 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RecipeCollectionTest {
 
@@ -36,6 +37,7 @@ public class RecipeCollectionTest {
 
     @Test
     public void addRecipeToCollectionTest() {
+
         List<Recipe> testRecipeCollectionList = testRecipeCollection.getRecipeCollection();
         assertEquals(4, testRecipeCollectionList.size());
 
@@ -44,6 +46,12 @@ public class RecipeCollectionTest {
 
         Recipe thirdRecipe = testRecipeCollectionList.get(2);
         assertEquals(15, thirdRecipe.getRecipeTime());
+
+        assertEquals(4,testRecipeCollection.getMap().size());
+
+        testRecipeCollection.addRecipeToCollection("Chicken NUggets",30,"Bread and Bake",
+                "Chicken","Bread","Spice");
+        assertEquals(5,testRecipeCollection.getMap().size());
     }
 
 

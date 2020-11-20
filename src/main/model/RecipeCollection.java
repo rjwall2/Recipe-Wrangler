@@ -138,13 +138,6 @@ public class RecipeCollection {
         recipeInstructionMap.put(recipeName,recipeInstructions);
     }
 
-    //EFFECTS: adds all recipes in personalCollection to recipeInstructionMap
-    public void addAllRecipesToMap() {
-        for (Recipe r: recipeCollection) {
-            addRecipeToMap(r);
-        }
-    }
-
     public Map getMap() {
         return recipeInstructionMap;
     }
