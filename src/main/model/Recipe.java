@@ -59,5 +59,10 @@ public class Recipe {
 
         return jsonObj;
     }
+
+    //EFFECTS: returns the instructions of a recipe
+    public String getRecipeInstructions() {
+        return this.instructions;
+    }
 }
 

@@ -41,6 +41,14 @@ personal collection by diet
 
 - As a user I want to be able to load a recipe collection from file
 
+- As a user I want to be able to have access to the instructions of added recipes
 
 
+
+###Phase 4: Task 2
+
+Incorporated a map field in the RecipeCollection class that
+stores the instructions of recipe. The map was used in the gui,
+to allow the user to access the instructions of a recipe by inputting
+the recipes name
 

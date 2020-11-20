@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
@@ -43,10 +44,15 @@ public class Gui implements ActionListener {
     Panel timeTopPanel;
     Panel timeBottomPanel;
 
+    JFrame instructionPopUp;
+    Panel instructionTopPanel;
+    Panel instructionBottomPanel;
+    JTextField recipeDesired;
+
     JButton timeB;
     JButton saveB;
     JButton addB;
-    JButton endB;
+    JButton viewRecipesB;
     JButton ingredientB;
     JButton ketoB;
     JButton vegeB;
@@ -124,6 +130,18 @@ public class Gui implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        buttonActivities(e);
+        if (e.getActionCommand().equals("GetInformation")) {
+            instructionBottomPanel.removeAll();
+            instructionBottomPanel.add(popUpLearnButtonActivity());
+        } else if (e.getActionCommand().equals("popuptime")) {
+            timeBottomPanel.removeAll();
+            timeBottomPanel.add(popUpTimeButtonProcess());
+        }
+    }
+
+
+    private void buttonActivities(ActionEvent e) {
         if (e.getActionCommand().equals("load")) {
             loadOldListBegin();
         } else if (e.getActionCommand().equals("new")) {
@@ -134,8 +152,8 @@ public class Gui implements ActionListener {
             savingActivity();
         } else if (e.getActionCommand().equals("add")) {
             addRecipeToPersonalCollection();
-        } else if (e.getActionCommand().equals("end")) {
-            System.exit(1);
+        } else if (e.getActionCommand().equals("viewrecipes")) {
+            viewRecipesActivities();
         } else if (e.getActionCommand().equals("ingredient")) {
             ingredientActivity();
         } else if (e.getActionCommand().equals("keto")) {
@@ -144,9 +162,6 @@ public class Gui implements ActionListener {
             vegetWindow();
         } else if (e.getActionCommand().equals("vegan")) {
             veganWindow();
-        } else if (e.getActionCommand().equals("popuptime")) {
-            timeBottomPanel.add(popUpTimeButtonProcess());
-
         }
     }
 
@@ -165,6 +180,7 @@ public class Gui implements ActionListener {
     //EFFECTS: executes activities for when loading an old save file is selected
     private void loadOldListBegin() {
         loadRecipeCollection();
+        personalCollection.addAllRecipesToMap();
         firstWindow.dispose();
         menuWindow();
     }
@@ -229,7 +245,7 @@ public class Gui implements ActionListener {
         buttonList.add(timeB = new JButton("time"));
         buttonList.add(saveB = new JButton("save"));
         buttonList.add(addB = new JButton("add"));
-        buttonList.add(endB = new JButton("end"));
+        buttonList.add(viewRecipesB = new JButton("Instructions"));
         buttonList.add(ingredientB = new JButton("ingredient"));
         buttonList.add(ketoB = new JButton("keto"));
         buttonList.add(vegeB = new JButton("veget"));
@@ -247,7 +263,7 @@ public class Gui implements ActionListener {
 
         addB.setActionCommand("add");
 
-        endB.setActionCommand("end");
+        viewRecipesB.setActionCommand("viewrecipes");
 
         ingredientB.setActionCommand("ingredient");
 
@@ -474,6 +490,45 @@ public class Gui implements ActionListener {
         } catch (Exception e) {
             System.out.println("Missing audio file");
         }
+    }
+
+    public void viewRecipesActivities() {
+
+        instructionPopUp = new JFrame("Recipe Instructions");
+        instructionPopUp.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        instructionPopUp.setSize(700,400);
+
+        instructionTopPanel = new Panel();
+        instructionBottomPanel = new Panel();
+
+        instructionPopUp.add(instructionTopPanel,BorderLayout.NORTH);
+        instructionPopUp.add(instructionBottomPanel,BorderLayout.SOUTH);
+
+        JLabel instructionPopUpQuestion = new JLabel("What recipe do you want?");
+        instructionPopUpQuestion.setBounds(150,30,400,150);
+        instructionTopPanel.add(instructionPopUpQuestion);
+
+        recipeDesired = new JTextField(22);
+        recipeDesired.setBounds(150,55,100,100);
+        instructionTopPanel.add(recipeDesired);
+
+        JButton learnbutton = new JButton("Learn");
+        instructionTopPanel.add(learnbutton);
+        learnbutton.setBounds(300,150,150,30);
+
+        learnbutton.setActionCommand("GetInformation");
+        learnbutton.addActionListener(this);
+
+
+        instructionPopUp.setVisible(true);
+
+    }
+
+    public JLabel popUpLearnButtonActivity() {
+        String recipeName = recipeDesired.getText();
+        Map<String,String> instructionsCollection = personalCollection.getMap();
+        String specificInstructions = instructionsCollection.get(recipeName);
+        return new JLabel(specificInstructions);
     }
 
 

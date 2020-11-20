@@ -4,17 +4,21 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //Represents a collection of a users recipes
 public class RecipeCollection {
 
     private List<Recipe> recipeCollection;
+    Map<String,String> recipeInstructionMap;
 
 
     //EFFECTS: Builds a new RecipeCollection, with recipeCollection field initially empty
     public RecipeCollection() {
         recipeCollection = new ArrayList<>();
+        recipeInstructionMap = new HashMap<>();
     }
 
 
@@ -25,6 +29,7 @@ public class RecipeCollection {
     public void addRecipeToCollection(String name, Integer time, String instruct, String... ing) {
         Recipe newRecipe = new Recipe(name, time, instruct, ing);
         recipeCollection.add(newRecipe);
+        addRecipeToMap(newRecipe);
     }
 
 
@@ -124,6 +129,24 @@ public class RecipeCollection {
             jsonArr.put(r.convertToJson());
         }
         return jsonArr;
+    }
+
+    //EFFECTS: adds a recipe's instructions to the recipeInstrucitonsMap
+    public void addRecipeToMap(Recipe r) {
+        String recipeName = r.getRecipeName();
+        String recipeInstructions = r.getRecipeInstructions();
+        recipeInstructionMap.put(recipeName,recipeInstructions);
+    }
+
+    //EFFECTS: adds all recipes in personalCollection to recipeInstructionMap
+    public void addAllRecipesToMap() {
+        for (Recipe r: recipeCollection) {
+            addRecipeToMap(r);
+        }
+    }
+
+    public Map getMap() {
+        return recipeInstructionMap;
     }
 
 }
