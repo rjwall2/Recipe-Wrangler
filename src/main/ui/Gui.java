@@ -22,6 +22,8 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
+
+//Recipe Wrangler application and GUI
 public class Gui implements ActionListener {
 
     String dataDestination = "./data/personalcollection.json";
