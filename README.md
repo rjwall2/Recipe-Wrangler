@@ -50,7 +50,7 @@ personal collection by diet
 Incorporated a map field in the RecipeCollection class that
 stores the instructions of recipe. The map was used in the gui,
 to allow the user to access the instructions of a recipe by inputting
-the recipes name
+the recipe's name
 
 
 ###Phase 4: Task 3

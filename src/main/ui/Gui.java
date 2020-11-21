@@ -86,6 +86,7 @@ public class Gui implements ActionListener {
 
     }
 
+    //MODIFIES: recipeListPanel
     //EFFECTS: converts current personal collection to a Jlist that is displayed on the menu window
     private void updatePersonalCollectionDisplay() {
 
@@ -236,6 +237,7 @@ public class Gui implements ActionListener {
         return nameList;
     }
 
+    //MODIFIES: operationPanel
     //EFFECTS: creates and sets all buttons in the menu window
     private void setButtons() {
 
@@ -491,6 +493,7 @@ public class Gui implements ActionListener {
         }
     }
 
+    //EFFECTS: creates new window for which the user can extract the instructions for recipes
     public void viewRecipesActivities() {
 
         instructionPopUp = new JFrame("Recipe Instructions");
@@ -523,6 +526,7 @@ public class Gui implements ActionListener {
 
     }
 
+    //EFFECTS: retrieves value from map according to the key passed as recipeDesired
     public JLabel popUpLearnButtonActivity() {
         String recipeName = recipeDesired.getText();
         Map<String,String> instructionsCollection = personalCollection.getMap();
