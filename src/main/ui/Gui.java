@@ -237,7 +237,7 @@ public class Gui implements ActionListener {
         return nameList;
     }
 
-    //MODIFIES: operationPanel
+    //MODIFIES:  operationPanel
     //EFFECTS: creates and sets all buttons in the menu window
     private void setButtons() {
 
