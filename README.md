@@ -24,24 +24,24 @@ people with allergies) or by diet,
 from a personal database of recipes.
 
 
-### User Stories
+### Functionalities 
 
-- As a user, I want to be able to add recipes to my personal
+- Users can add recipes to their personal
 collection
 
-- As a user, I want to be able to filter the recipes in my
+- Users can filter the recipes in their
 personal collection by exclusion of ingredients
 
-- As a user I want to be able to filter the recipes in my
+- Users can filter the recipes in their
 personal collection by diet
 
-- As a user I want to be able to filter the recipes by time
+-Users can filter recipes by time
 
-- As a user I want to be able to save my recipe collection to file
+- Users can save a recipe collection to file
 
-- As a user I want to be able to load a recipe collection from file
+- Users can load a recipe collection from file
 
-- As a user I want to be able to have access to the instructions of added recipes
+- Users can access the instructions of added recipes
 
 
 
@@ -51,15 +51,4 @@ Incorporated a map field in the RecipeCollection class that
 stores the instructions of recipe. The map was used in the gui,
 to allow the user to access the instructions of a recipe by inputting
 the recipe's name
-
-
-###Phase 4: Task 3
-
-- some methods with very similar implementation could have been
-replaced with a single method encapsulating the similarities, and
-having key areas modifiable 
-
-- Could improve cohesion in the Gui class
-
-
 
